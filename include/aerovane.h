@@ -6,4 +6,4 @@ typedef struct Aeronave
     int tipo;
     int emergencia;
     int prioridade;
-}Aeronave;
+} Aeronave;
