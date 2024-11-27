@@ -1,6 +1,6 @@
-#include "util.h"
+#include "../include/util.h"
 
-void maxHeapify(No *arvore)
+void arvore_maxima(No *arvore)
 {
     if (arvore == NULL)
     {
@@ -25,6 +25,6 @@ void maxHeapify(No *arvore)
         arvore->aeronave = maior->aeronave;
         maior->aeronave = aux;
 
-        maxHeapify(maior);
+        arvore_maxima(maior);
     }
 }
