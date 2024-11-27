@@ -17,10 +17,15 @@ void menu(){
     printf("\nDigite o numero da operacao desejada: ");
 }
 
-void menuOperacoes(int entrada){
+void menuOperacoes(int entrada, char* nome_arquivo){
+    Aeronave aeronave;
+
     switch (entrada)
     {
     case 1:
+        aeronave = cadastrar_aeronave();
+        salvar_aeronave(nome_arquivo, aeronave);
+        exibir_aeronave(aeronave);
         break;
     case 2:
         break;
@@ -55,6 +60,22 @@ int leitor_de_numeros(){
     return numero;
 }
 
+int leitor_de_tipo(){
+    int numero;
+    int resultado;
+
+    resultado = scanf("%d", &numero);
+
+    if(resultado != 1 || (numero != 0 & numero != 1)){
+        printf("Numero invalido!\nDigite o numero novamente: ");
+        limpador_de_buffer();
+        return leitor_de_numeros();
+    }
+
+    limpador_de_buffer();
+    return numero;
+}
+
 char* leitor_de_palavras(){
     char* palavra = (char*)malloc(50 * sizeof(char));
 
@@ -77,3 +98,12 @@ char* leitor_de_palavras(){
         return leitor_de_palavras();
     }
 }
+
+int calculador_de_prioridade(Aeronave aeronave){
+    int prioridade;
+
+    prioridade = (1000 - aeronave.combustivel) + (1440 - aeronave.horario_em_minutos) + 500 * (aeronave.tipo) + 5000 * (aeronave.emergencia);
+
+    return prioridade;
+}
+

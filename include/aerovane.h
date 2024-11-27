@@ -7,3 +7,7 @@ typedef struct Aeronave
     int emergencia;
     int prioridade;
 } Aeronave;
+
+Aeronave cadastrar_aeronave();
+void salvar_aeronave(char* nome_arquivo, Aeronave aeronave);
+void exibir_aeronave(Aeronave aeronave);
