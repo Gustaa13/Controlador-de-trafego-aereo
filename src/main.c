@@ -11,7 +11,7 @@ int main(){
         menu();
         entrada = leitor_de_numeros();
 
-        menuOperacoes(entrada);
+        menuOperacoes(entrada, nome_arquivo);
     } while (entrada != 5);
 
     return 0;
