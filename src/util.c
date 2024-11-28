@@ -66,7 +66,7 @@ int leitor_de_tipo(){
 
     resultado = scanf("%d", &numero);
 
-    if(resultado != 1 || (numero != 0 & numero != 1)){
+    if(resultado != 1 || (numero != 0 && numero != 1)){
         printf("Numero invalido!\nDigite o numero novamente: ");
         limpador_de_buffer();
         return leitor_de_numeros();

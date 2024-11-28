@@ -1,4 +1,4 @@
-#include "arvore.h"
+#include "heap.h"
 
 void menu();
 void menuOperacoes(int entrada, char* nome_arquivo);
