@@ -10,7 +10,7 @@ Aeronave cadastrar_aeronave(){
 
     printf("Digite o indentificador da aeronave: ");
     entrada = leitor_de_palavras();
-    strcpy(aeronave.indetificador, entrada);
+    strcpy(aeronave.indentificador, entrada);
     free(entrada);
 
     printf("Digite o combustivel da aeronave: ");
@@ -39,7 +39,7 @@ void salvar_aeronave(char* nome_arquivo, Aeronave aeronave){
     }
 
     fprintf(arquivo, "%s,%i,%i,%i,%i,%i\n",
-        aeronave.indetificador,
+        aeronave.indentificador,
         aeronave.combustivel,
         aeronave.horario_em_minutos,
         aeronave.tipo,
@@ -51,7 +51,7 @@ void salvar_aeronave(char* nome_arquivo, Aeronave aeronave){
 }
 
 void exibir_aeronave(Aeronave aeronave){
-    printf("Aeronave \"%s\":\n", aeronave.indetificador);
+    printf("Aeronave \"%s\":\n", aeronave.indentificador);
     printf("  Combustivel: %i\n", aeronave.combustivel);
     printf("  Horario em minutos da decolagem ou pouso: %i\n", aeronave.horario_em_minutos);
     printf("  Tipo de operacao (0: decolagem, 1: pouso): %i\n", aeronave.tipo);

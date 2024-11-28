@@ -101,8 +101,8 @@ void carregar_aeronave(char* nome_arquivo, Frota* frota){
             coluna++;
             switch (coluna){
                 case 1: 
-                    strncpy(aeronave->indetificador, token, sizeof(aeronave->indetificador) - 1); 
-                    aeronave->indetificador[sizeof(aeronave->indetificador) - 1] = '\0';
+                    strncpy(aeronave->indentificador, token, sizeof(aeronave->indentificador) - 1); 
+                    aeronave->indentificador[sizeof(aeronave->indentificador) - 1] = '\0';
                     break;
                 case 2: aeronave->combustivel = atoi(token); break;
                 case 3: aeronave->horario_em_minutos = atoi(token); break;
@@ -125,8 +125,41 @@ void remover_maior_prioridade(Frota** frota){
     for (int i = 0; i < (*frota)->capacidade - 1; i++) {
         (*frota)->aeronave[i] = (*frota)->aeronave[i + 1];
     }
-    
+
     diminuir_frora(*frota);
+
+    construir_heap_maxima((*frota)->aeronave, (*frota)->capacidade);
 }
+
+void atualizarPrioridade(Frota* frota){
+    frota->aeronave->prioridade = calculador_de_prioridade(*frota->aeronave);
+    construir_heap_maxima(frota->aeronave, frota->capacidade);
+}
+
+void consultar_maior_prioridade(Aeronave* heap){
+    printf("Aeronave com maior prioridade:\n");
+    printf("Identificador: %s\n", heap[0].indentificador);
+    printf("Combustivel: %d\n", heap[0].combustivel);
+    printf("Horario: %d\n", heap[0].horario_em_minutos);
+    printf("Tipo: %d\n", heap[0].tipo);
+    printf("Emergencia: %d\n", heap[0].emergencia);
+    printf("Prioridade: %d\n", heap[0].prioridade);
+}
+
+void exibirArvore(Frota* frota){
+    for (int i = 0; i < frota->capacidade; i++)
+    {
+        printf("Aeronave %d:\n", i+1);
+        printf("Aeronave com maior prioridade:\n");
+        printf("Identificador: %s\n", frota->aeronave[i].indentificador);
+        printf("Combustivel: %d\n", frota->aeronave[i].combustivel);
+        printf("Horario: %d\n", frota->aeronave[i].horario_em_minutos);
+        printf("Tipo: %d\n", frota->aeronave[i].tipo);
+        printf("Emergencia: %d\n", frota->aeronave[i].emergencia);
+        printf("Prioridade: %d\n", frota->aeronave[i].prioridade);
+    }
+}
+
+
 
 
