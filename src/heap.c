@@ -1,5 +1,8 @@
 #include "../include/util.h"
-inline
+#include <string.h>
+
+#define MAX_LINHAS 100  
+#define TAM_LINHA 1024
 
 void heap_maxima(Aeronave* heap, int capacidade, int indice)
 {
@@ -59,12 +62,63 @@ void ordenar_heap(Aeronave* heap, int capacidade) {
 }
 
 void inserir_aeronave(Frota* frota, Aeronave aeronave){
+    
     aumentar_frota(frota);
 
     frota->aeronave[frota->capacidade - 1] = aeronave;
 
     construir_heap_maxima(frota->aeronave, frota->capacidade);
     
+}
+
+void carregarAeronave(char* nome_arquivo, Frota* heap){
+    
+    FILE *file = fopen(nome_arquivo, "r");
+
+    if (file == NULL)
+    {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+
+    char line[TAM_LINHA];
+
+    while (fgets(line, sizeof(line), file)){
+        Aeronave* aeronave = malloc(sizeof(Aeronave));
+
+        if (!aeronave){
+            perror("Erro ao alocar memoria para Livro");
+            fclose(file);
+            return;
+        }
+
+        line[strcspn(line, "\n")] = 0;
+
+        char *token = strtok(line, ",");
+        int coluna = 0;
+
+        while (token != NULL){
+            coluna++;
+            switch (coluna){
+                case 1: 
+                    strncpy(aeronave->indetificador, token, sizeof(aeronave->indetificador) - 1); 
+                    aeronave->indetificador[sizeof(aeronave->indetificador) - 1] = '\0';
+                    break;
+                case 2: aeronave->combustivel = atoi(token); break;
+                case 3: aeronave->horario_em_minutos = atoi(token); break;
+                case 4: aeronave->tipo = atoi(token); break;
+                case 5: aeronave->emergencia = atoi(token); break;
+            }
+
+             token = strtok(NULL, ",");
+        }
+
+        aeronave->prioridade = calculador_de_prioridade(*aeronave);
+        inserir_aeronave(heap, *aeronave);
+        free(aeronave);
+    }
+
+    fclose(file);
 }
 
 
