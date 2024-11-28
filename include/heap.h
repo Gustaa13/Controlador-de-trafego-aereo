@@ -14,4 +14,4 @@ void inserir_aeronave(Frota* frota, Aeronave aeronave);
 void consultar_maior_prioridade(Aeronave* heap);
 void remover_maior_prioridade(Frota** frota);
 void atualizarPrioridade(Frota* frota);
-void exibirArvore(Frota* frota);
+void exibir_heap(Frota* frota);

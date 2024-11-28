@@ -146,7 +146,7 @@ void consultar_maior_prioridade(Aeronave* heap){
     printf("Prioridade: %d\n", heap[0].prioridade);
 }
 
-void exibirArvore(Frota* frota){
+void exibir_arvore(Frota* frota){
     for (int i = 0; i < frota->capacidade; i++)
     {
         printf("Aeronave %d:\n", i+1);
