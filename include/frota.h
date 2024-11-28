@@ -1,5 +1,7 @@
 #include "aerovane.h"
 #include <stdio.h>
+#include <stdlib.h>
+
 
 typedef struct Frota
 {
@@ -11,3 +13,4 @@ typedef struct Frota
 // void liberar_frota(Frota* frota);
 // void exibir_frota(Frota* frota);
 void aumentar_frota(Frota* frota);
+void diminuir_frora(Frota* frota);

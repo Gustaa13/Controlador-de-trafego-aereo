@@ -71,7 +71,7 @@ void inserir_aeronave(Frota* frota, Aeronave aeronave){
     
 }
 
-void carregarAeronave(char* nome_arquivo, Frota* heap){
+void carregar_aeronave(char* nome_arquivo, Frota* frota){
     
     FILE *file = fopen(nome_arquivo, "r");
 
@@ -114,11 +114,19 @@ void carregarAeronave(char* nome_arquivo, Frota* heap){
         }
 
         aeronave->prioridade = calculador_de_prioridade(*aeronave);
-        inserir_aeronave(heap, *aeronave);
+        inserir_aeronave(frota, *aeronave);
         free(aeronave);
     }
 
     fclose(file);
+}
+
+void remover_maior_prioridade(Frota** frota){
+    for (int i = 0; i < (*frota)->capacidade - 1; i++) {
+        (*frota)->aeronave[i] = (*frota)->aeronave[i + 1];
+    }
+    
+    diminuir_frora(*frota);
 }
 
 
