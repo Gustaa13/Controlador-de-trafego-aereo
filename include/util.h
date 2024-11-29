@@ -1,7 +1,7 @@
-#include "arvore.h"
+#include "heap.h"
 
 void menu();
-void menuOperacoes(int entrada, char* nome_arquivo);
+void menuOperacoes(int entrada, char* nome_arquivo, Frota* frota);
 void limpador_de_buffer();
 int leitor_de_numeros();
 int leitor_de_tipo();
