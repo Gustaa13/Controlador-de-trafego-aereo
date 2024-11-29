@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/util.h"
-#include "../include/aerovane.h"
 
 Aeronave cadastrar_aeronave(){
     Aeronave aeronave;

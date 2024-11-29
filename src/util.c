@@ -17,7 +17,7 @@ void menu(){
     printf("\nDigite o numero da operacao desejada: ");
 }
 
-void menuOperacoes(int entrada, char* nome_arquivo){
+void menuOperacoes(int entrada, char* nome_arquivo, Frota* frota){
     Aeronave aeronave;
 
     switch (entrada)
@@ -28,10 +28,15 @@ void menuOperacoes(int entrada, char* nome_arquivo){
         exibir_aeronave(aeronave);
         break;
     case 2:
+        aeronave = consultar_maior_prioridade(*frota);
+        exibir_aeronave(aeronave);
         break;
     case 3:
+        remover_maior_prioridade(&frota);
         break;
     case 4:
+        ordenar_heap(frota);
+        exibir_frota(frota);
         break;
     case 5:
         break;
@@ -106,4 +111,6 @@ int calculador_de_prioridade(Aeronave aeronave){
 
     return prioridade;
 }
+
+
 
