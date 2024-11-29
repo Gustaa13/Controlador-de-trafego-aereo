@@ -85,8 +85,8 @@ void carregar_frota(char* nome_arquivo, Frota* frota){
             coluna++;
             switch (coluna){
                 case 1: 
-                    strncpy(aeronave->indentificador, token, sizeof(aeronave->indentificador) - 1); 
-                    aeronave->indentificador[sizeof(aeronave->indentificador) - 1] = '\0';
+                    strncpy(aeronave->identificador, token, sizeof(aeronave->identificador) - 1); 
+                    aeronave->identificador[sizeof(aeronave->identificador) - 1] = '\0';
                     break;
                 case 2: aeronave->combustivel = atoi(token); break;
                 case 3: aeronave->horario_em_minutos = atoi(token); break;
@@ -107,8 +107,34 @@ void carregar_frota(char* nome_arquivo, Frota* frota){
     fclose(file);
 }
 
+void salvar_frota(char* nome_arquivo, Frota frota){
+    for(int i = 0; i < frota.capacidade; i++){
+        salvar_aeronave(nome_arquivo, frota.aeronave[i]);
+    }
+};
+
 void liberar_frota(Frota* frota){
     free(frota->aeronave);
     free(frota);
+}
+
+int frota_vazia(Frota* frota){
+    return frota == NULL;
+}
+
+Aeronave* buscar_aeronave(Frota* frota, char* identificador){
+    if(frota_vazia(frota)){
+        printf("Frota vazia!");
+        return NULL;
+    }
+
+    for(int i = 0; i < frota->capacidade; i++){
+        if(!comparador_de_palavras(frota->aeronave[i].identificador, identificador)){
+            return &frota->aeronave[i];
+        }
+    }
+    
+    printf("\nAeronave nao existe!\n");
+    return NULL;
 }
 
