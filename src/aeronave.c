@@ -64,7 +64,7 @@ void alterador_de_combustivel(Aeronave* aeronave){
     printf("Digite o novo valor do combustivel: ");
     combustivel = leitor_de_numeros();
 
-    if((aeronave->combustivel < combustivel) & aeronave->tipo == 1){
+    if((aeronave->combustivel < combustivel) && aeronave->tipo == 1){
         printf("\nO aviao ja esta em voo, o combustivel nao pode ser aumentado!\n");
 
         return;
